@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240318131522_Initial")]
+    [Migration("20240318144507_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -112,9 +112,6 @@ namespace BookStore.Migrations
                         .HasColumnType("int");
 
                     b.Property<Guid?>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Status")

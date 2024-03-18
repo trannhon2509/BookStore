@@ -116,9 +116,9 @@ namespace BookStore.Pages
 
         public async Task<IActionResult> PayAndOrder()
         {
-            foreach(var item in Cart) 
+            Cart = HttpContext.Session.GetObject<List<CartItem>>("cart");
+            foreach (var item in Cart) 
             {
-                Cart = HttpContext.Session.GetObject<List<CartItem>>("cart");
                 if(Cart == null) 
                 {
                     return RedirectToPage("/Purchase");

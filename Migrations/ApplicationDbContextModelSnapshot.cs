@@ -111,9 +111,6 @@ namespace BookStore.Migrations
                     b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("ProductId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Status")
                         .HasColumnType("nvarchar(50)");
 

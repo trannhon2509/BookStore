@@ -220,11 +220,10 @@ namespace BookStore.Migrations
                 {
                     OrderDetailId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    BookId = table.Column<int>(type: "int", nullable: true),
                     UnitPrice = table.Column<float>(type: "real", nullable: false),
                     UnitStock = table.Column<float>(type: "real", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(50)", nullable: true),
-                    BookId = table.Column<int>(type: "int", nullable: true)
+                    Status = table.Column<string>(type: "nvarchar(50)", nullable: true)
                 },
                 constraints: table =>
                 {
