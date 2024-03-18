@@ -13,5 +13,8 @@ namespace BookStore.Data
         public DbSet<Book> Books { get; set; }
 
         public DbSet<BookCategory> BookCategories { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<ApplicationRole> ApplicationRoles { get; set; }
     }
 }
