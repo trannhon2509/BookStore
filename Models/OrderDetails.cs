@@ -8,7 +8,7 @@ namespace BookStore.Models
         [Key]
         public Guid OrderDetailId { get; set; }
         public Guid? OrderId { get; set; }
-        public Guid? ProductId { get; set; }
+        public int? BookId { get; set; }
         public float UnitPrice { get; set; }
         public float UnitStock { get; set; }
         [Column(TypeName = "nvarchar(50)")]

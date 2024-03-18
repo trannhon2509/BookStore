@@ -64,9 +64,14 @@
                             <h4 class="text-end">Total <strong>$@ViewData["total"]</strong></h4>
                         </div>
                         <div class="col-3">
-                            <button type="button" class="btn btn-success">
+                            <@* button href="/Purch" class="btn btn-success" asp-page="Purchase" asp-page-handler="PayAndOrder">
                                 Checkout
-                            </button>
+                            </button> *@
+                            <form method="post" asp-page="Purchase" asp-page-handler="PayAndOrder">
+                                <button class="btn btn-success">
+                                    Checkout
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

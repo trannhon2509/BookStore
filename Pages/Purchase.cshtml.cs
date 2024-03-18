@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace BookStore.Pages
 {
@@ -112,5 +113,37 @@ namespace BookStore.Pages
             HttpContext.Session.SetObject<List<CartItem>>("cart", Cart);
             return RedirectToPage("/Purchase");
         }
+
+        public async Task<IActionResult> PayAndOrder()
+        {
+            foreach(var item in Cart) 
+            {
+                Cart = HttpContext.Session.GetObject<List<CartItem>>("cart");
+                if(Cart == null) 
+                {
+                    return RedirectToPage("/Purchase");
+                }
+                Guid id = Guid.NewGuid();
+                 _context.Orders.Add(new Order { 
+                    OrderId = id, 
+                    OrderDate = DateTime.Now, 
+                    UserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                Status = "On Going"
+                });
+                _context.OrderDetails.Add(new OrderDetails
+                {
+                    OrderId = id,
+                    BookId = item.Book.Id,
+                    OrderDetailId = Guid.NewGuid(),
+                    Status = "On Going",
+                    UnitPrice = (float)(item.Book.Price * item.Quantity),
+                    UnitStock = item.Quantity
+                });
+            }
+            Cart.Clear();
+            await _context.SaveChangesAsync();
+            return RedirectToPage("/Index");
+        }
+
     }
 }
